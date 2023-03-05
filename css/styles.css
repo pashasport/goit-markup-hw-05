@@ -2,6 +2,7 @@
 :root{
 --main-color: #2E2F42;
 --main-grey-color:#434455;
+--modal-background: #fcfcfc;
 --white-color:  #FFFFFF;
 --button-blue-color:  #4D5AE5;
 --main-bground-color: #F4F4FD;
@@ -12,6 +13,8 @@
 --card-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 --color-customers: #8E8F99;
 --backround-footer-social: #31D0AA;
+--transition-dur-fun: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+--overlay-portfolio: rgba(77, 90, 229, 1);
 }
 
 .list{
@@ -78,7 +81,7 @@ body {
 .logo .caption{
   color:  var(--white-color);
 }
-/* nav */
+/* -----------------nav------------ -----------*/
 
 .nav-list .item+ .item{
   margin-left: 40px;
@@ -87,25 +90,59 @@ body {
  display: flex;
  margin-left: 76px;
 }
-.nav-list .link{
- padding-top: 24px;
- padding-bottom: 24px;
+
+.link.current{
+  position: relative;
+  color: var(--background-button-color);
+}
+.link::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--background-button-color);
+  border-radius: 2px;
+  transform: scale(0, 0);
+  transition: transform var(--transition-dur-fun);
+}
+.link:hover::after,
+.link:focus::after{
+  transform: scale(1, 1);
+}
+.link.current::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--background-button-color);
+  border-radius: 2px;
+  transform: scale(1);
+
 }
 .nav-list .link {
+  position: relative;
   display: block;
-
   color: var(--main-color);
   font-weight: 500;
   line-height: 1.5;
+  padding-top: 24px;
+  padding-bottom: 24px;
   text-decoration: none;
+  transition: color var(--transition-dur-fun);
  }
-
 .link:hover,
 .link:focus
 { 
   color:var(--background-button-color);
 }
-/* auth list */
+/* --------------------auth list----------------- */
 .auth {
  margin-left: auto; 
 }
@@ -124,15 +161,16 @@ margin-left: 40px;
   text-decoration: none;  
   padding-top: 24px;
   padding-bottom: 24px;
+  transition:  color var(--transition-dur-fun);
 }
-.auth-link:hover,
+.auth-link:hover, 
 .auth-link:focus
 {color:var(--background-button-color)
 }
 .page-nav{
   border-bottom: 1px solid var(--footer-text-color) ;
 }
-/* hero section */
+/* --------------------hero section --------------*/
 .hero-section{
   max-width: 1440px;
   height: 600px;
@@ -151,7 +189,7 @@ margin-left: 40px;
   background-color: var(--main-color);  
   text-align: center;
 }
-/* text for hero section */
+/* ----------------text for hero section -------------*/
 .hero-section .hero-text{
   margin: 0;
   margin-bottom: 48px;
@@ -163,7 +201,7 @@ margin-left: 40px;
   color: var(--white-color);
 
 }
-/* button for hero (primery button)*/
+/* ---------button for hero (primery button)--------*/
 .hero-section .button-primary{
   display: inline-block;
   cursor: pointer;
@@ -179,19 +217,18 @@ margin-left: 40px;
   line-height: 1.5;
   letter-spacing: 0.04em;
   
- 
+ transition: background-color var(--transition-dur-fun);
   color: var(--white-color);
-  background: var(--button-blue-color);
+  background-color: var(--button-blue-color);
 }
 .button-primary:hover,
 .button-primary:focus{
-background: var(--background-button-color);
+background-color: var(--background-button-color);
 }
 
-/* for portfolio button */
+/* ------------for portfolio button-------------- */
 /* 1 for button list*/
 .button-list {
-
   margin-bottom: 72px;
   display: flex;
   flex-wrap: wrap;
@@ -214,11 +251,15 @@ background: var(--background-button-color);
   line-height: 1.5;
   letter-spacing: 0.04em; 
   color: var(--button-blue-color);
-  background: var(--button-portf-bground-color); 
+  background-color: var(--button-portf-bground-color); 
+  transition: background-color var(--transition-dur-fun),
+  color var(--transition-dur-fun),
+  border var(--transition-dur-fun),
+  box-shadow var(--transition-dur-fun);
 }
 .button-link:hover,
 .button-link:focus{
- background: var(--background-button-color); 
+ background-color: var(--background-button-color); 
  color: var(--white-color);
  border: 1px solid transparent;
  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
@@ -240,10 +281,13 @@ img {
 .card-img .card-portfolio {
   display: block;
   text-decoration: none;
+  border: 1px sol;
+  transition: box-shadow var(--transition-dur-fun);
 }
 .chapter .card-portfolio:hover,
 .chapter .card-portfolio:focus {
   box-shadow: 0px 1px 6px rgb(46 47 66 / 8%), 0px 1px 1px rgb(46 47 66 / 16%), 0px 2px 1px rgb(46 47 66 / 8%);
+
 }
   .card-content .subtitle{
   margin-top: 0;
@@ -253,10 +297,51 @@ img {
   line-height: 1.2;
   color: var(--main-color);
 } 
-/* .card-img .item{
-   width: 360px;
-  flex-basis: calc(100% / 3 - 24px); 
- } */
+.img-overlay{
+  position: relative;
+  overflow: hidden;
+}
+.overlay{
+  position: absolute;
+  margin: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-weight: 400;
+  line-height: 1.5;
+  transform: translate(0, 100%);
+  transition: transform var(--transition-dur-fun);
+
+  padding: 40px 32px 164px; 
+  color: var(--button-portf-bground-color);
+  background-color: var(--overlay-portfolio);
+}
+.card-portfolio:hover .overlay,
+.card-portfolio:focus .overlay{
+transform: translate(0, 0);
+
+}
+
+/* .product-thumb{
+  position: relative;
+}
+.product-thumb::before{
+  display: inline-block;
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  
+}
+.product-thumb:hover:before{
+background-color: var(--button-blue-color);
+} */
+.card-img .chapter{
+    /* width: 360px; */
+  /* /* width: calc((100%-24px)/2); */
+  /* flex-basis: calc(100% / 3 - 24px); */
+ }  
 
 .card-content{
   padding: 32px 16px;
@@ -439,6 +524,7 @@ img {
   height: 40px;
   border-radius: 50%;
   background-color: var(--button-blue-color);
+  transition: background-color var(--transition-dur-fun);
 }
 .social-list-link:hover,
 .social-list-link:focus  {
@@ -483,6 +569,7 @@ background-color: var(--background-button-color);
   height: 88px;
   border: 1px solid var(--color-customers);
   border-radius: 4px;
+  transition: border var(--transition-dur-fun);
 }
 
 .logo-icon{
@@ -490,6 +577,7 @@ background-color: var(--background-button-color);
   height: 56px;
   fill: var(--color-customers); 
    /* outline: 1px solid brown;  */
+   transition: fill var(--transition-dur-fun);
 }
 .logo-link:hover,
 .logo-link:focus{
@@ -541,6 +629,7 @@ display: flex;
   height: 40px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color var(--transition-dur-fun);
 }
 .media-link:hover,
 .media-link:focus{
@@ -556,4 +645,64 @@ display: flex;
   font-size: 16px;
   line-height: 1.5;
   color: var(--white-color);
+  }
+  /* ------------for modal window */
+  .backdrop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+  transition: opacity var(--transition-dur-fun),
+  visibility var(--transition-dur-fun);
+  }
+  .backdrop.is-hidden{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+  }
+  .modal{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 408px;
+    height: 576px;
+    background-color: var(--modal-background);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  .close-icon{
+    transition: fill var(--transition-dur-fun);
+  }
+  .modal-close{
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    top: 24px;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--button-border);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0ex;
+    transition:background-color var(--transition-dur-fun),
+    border var(--transition-dur-fun);
+   
+  }
+  .modal-close:hover,
+  .modal-close:focus{
+    border: 1px solid transparent;
+    background-color: var(--background-button-color);
+  }
+  .modal-close:hover .close-icon,
+  .modal-close:focus .close-icon{
+  fill: var(--white-color);
   }
