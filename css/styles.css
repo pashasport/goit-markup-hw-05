@@ -664,16 +664,19 @@ display: flex;
     pointer-events: none;
 
   }
+  .backdrop.is-hidden .modal{
+    opacity: 0;
+    transform: translate(50%, 180%) scale(1,1) rotate(30deg);
+   
+  }
   .modal{
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%) rotate(0) scale(1, 1);
-    transition: transform var(--transition-dur-fun), 
-    box-shadow var(--transition-dur-fun), 
+    transform: translate(-50%, -50%) rotate(0) scale(1); 
+    transition: transform var(--transition-dur-fun),
+    box-shadow var(--transition-dur-fun),
     opacity var(--transition-dur-fun);
-    opacity: 1;
-    /* transform: translate(-50%, -50%); */
     width: 408px;
     height: 576px;
     background-color: var(--modal-background);
@@ -683,6 +686,7 @@ display: flex;
   .close-icon{
     transition: fill var(--transition-dur-fun);
   }
+
   .modal-close{
     position: absolute;
     cursor: pointer;
