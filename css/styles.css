@@ -668,7 +668,12 @@ display: flex;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(0) scale(1, 1);
+    transition: transform var(--transition-dur-fun), 
+    box-shadow var(--transition-dur-fun), 
+    opacity var(--transition-dur-fun);
+    opacity: 1;
+    /* transform: translate(-50%, -50%); */
     width: 408px;
     height: 576px;
     background-color: var(--modal-background);
